@@ -1,5 +1,5 @@
 Name:           telepathy-glib
-Version:        0.6.0
+Version:        0.7.0
 Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
@@ -26,8 +26,6 @@ A glib utility library for the telepathy framework
 %defattr(-,root,root,-)
 %{_includedir}/telepathy-1.0/telepathy-glib/*.h
 %{_includedir}/telepathy-1.0/telepathy-glib/_gen/*.h
-%{_includedir}/telepathy-unstable/telepathy-glib/*.h
-%{_includedir}/telepathy-unstable/telepathy-glib/_gen/*.h
 %{_libdir}/*
 %{_datadir}/gtk-doc/html/telepathy-glib/*
 
