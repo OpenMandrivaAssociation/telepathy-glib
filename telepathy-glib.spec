@@ -19,7 +19,6 @@ BuildRequires:  python-devel
 Requires:       telepathy-filesystem
 
 %description
-
 A glib utility library for the telepathy framework
 
 %files
