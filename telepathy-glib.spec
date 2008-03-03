@@ -1,6 +1,6 @@
 Name:           telepathy-glib
 Version:        0.7.3
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
@@ -19,7 +19,7 @@ BuildRequires:  python-devel
 Requires:       telepathy-filesystem
 
 %description
-A glib utility library for the telepathy framework
+%name is a glib utility library for the telepathy framework.
 
 %files
 %defattr(-,root,root,-)
