@@ -1,6 +1,6 @@
 Name:           telepathy-glib
-Version:        0.7.3
-Release:        %mkrel 2
+Version:        0.7.4
+Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
