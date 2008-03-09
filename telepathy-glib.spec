@@ -1,5 +1,5 @@
 Name:           telepathy-glib
-Version:        0.7.4
+Version:        0.7.5
 Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
