@@ -1,6 +1,9 @@
+%define major 0
+%define libname %mklibname %name %major
+%define develname %mklibname -d %name
 Name:           telepathy-glib
 Version:        0.7.6
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
@@ -16,17 +19,42 @@ BuildRequires:  dbus-glib-devel
 BuildRequires:  libxslt-proc
 BuildRequires:  python-devel
 
-Requires:       telepathy-filesystem
-
 %description
 %name is a glib utility library for the telepathy framework.
 
-%files
+%package -n %libname
+Group: System/Libraries
+Summary: A glib utility library for the telepathy framework
+Provides: %name
+Obsoletes: %name
+Requires:       telepathy-filesystem
+
+%description -n %libname
+%name is a glib utility library for the telepathy framework.
+
+%package -n %develname
+Group: Development/C
+Summary: A glib utility library for the telepathy framework
+Requires: %libname = %version-%release
+Provides: lib%name-%devel = %version-%release
+
+%description -n %develname
+%name is a glib utility library for the telepathy framework.
+
+%files -n %libname
 %defattr(-,root,root,-)
+%{_libdir}/libtelepathy-glib.so.%{major}*
+
+%files -n %develname
+%defattr(-,root,root,-)
+%{_libdir}/libtelepathy-glib.la
+%{_libdir}/libtelepathy-glib.so
+%dir %{_includedir}/telepathy-1.0/
+%dir %{_includedir}/telepathy-1.0/telepathy-glib/
 %{_includedir}/telepathy-1.0/telepathy-glib/*.h
 %{_includedir}/telepathy-1.0/telepathy-glib/_gen/*.h
-%{_libdir}/*
-%{_datadir}/gtk-doc/html/telepathy-glib/*
+%{_datadir}/gtk-doc/html/telepathy-glib/
+%_libdir/pkgconfig/telepathy-glib.pc
 
 #--------------------------------------------------------------------
 
@@ -35,14 +63,17 @@ Requires:       telepathy-filesystem
 
 
 %build
-%configure
+%configure2_5x
 %make
 
 
 %install
 rm -rf %buildroot
-make install DESTDIR=%buildroot
-
+%makeinstall_std
+rm -f %buildroot%{_libdir}/libtelepathy-glib.a
 
 %clean
 rm -rf %buildroot
+
+%post -n %libname -p /sbin/ldconfig
+%postun -n %libname -p /sbin/ldconfig
