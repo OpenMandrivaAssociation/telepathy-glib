@@ -36,7 +36,7 @@ Requires:       telepathy-filesystem
 Group: Development/C
 Summary: A glib utility library for the telepathy framework
 Requires: %libname = %version-%release
-Provides: lib%name-%devel = %version-%release
+Provides: lib%name-devel = %version-%release
 
 %description -n %develname
 %name is a glib utility library for the telepathy framework.
