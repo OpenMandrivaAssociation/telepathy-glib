@@ -2,15 +2,14 @@
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
 Name:           telepathy-glib
-Version:        0.7.6
-Release:        %mkrel 3
+Version:        0.7.7
+Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-#Source1:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  glib2-devel
@@ -61,11 +60,9 @@ Provides: lib%name-devel = %version-%release
 %prep
 %setup -q
 
-
 %build
 %configure2_5x
 %make
-
 
 %install
 rm -rf %buildroot
