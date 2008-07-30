@@ -10,7 +10,6 @@ Group:          Networking/Instant messaging
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:         telepathy-glib-0.7.13-pkgconfig.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  glib2-devel
@@ -60,7 +59,7 @@ Provides: lib%name-devel = %version-%release
 
 %prep
 %setup -q
-%patch -p1 -b .pkgconfig
+#%patch -p1 -b .pkgconfig
 
 %build
 %configure2_5x
