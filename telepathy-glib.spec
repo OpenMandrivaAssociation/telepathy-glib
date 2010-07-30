@@ -1,8 +1,9 @@
 %define major 0
+%define api 0.12
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
 Name:           telepathy-glib
-Version:        0.10.5
+Version:        0.11.8
 Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
@@ -12,9 +13,8 @@ URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  glib2-devel
-BuildRequires:  dbus-devel
 BuildRequires:  dbus-glib-devel
+BuildRequires:  gobject-introspection-devel >= 0.6.11
 BuildRequires:  libxslt-proc
 BuildRequires:  python-devel
 
@@ -43,11 +43,13 @@ Provides: lib%name-devel = %version-%release
 %files -n %libname
 %defattr(-,root,root,-)
 %{_libdir}/libtelepathy-glib.so.%{major}*
+%_libdir/girepository-1.0/TelepathyGLib-%api.typelib
 
 %files -n %develname
 %defattr(-,root,root,-)
 %{_libdir}/libtelepathy-glib.la
 %{_libdir}/libtelepathy-glib.so
+%_datadir/gir-1.0/TelepathyGLib-%api.gir
 %dir %{_includedir}/telepathy-1.0/
 %dir %{_includedir}/telepathy-1.0/telepathy-glib/
 %{_includedir}/telepathy-1.0/telepathy-glib/*.h
