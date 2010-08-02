@@ -4,19 +4,22 @@
 %define develname %mklibname -d %name
 Name:           telepathy-glib
 Version:        0.11.11
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+Patch0:		telepathy-glib-0.11.11-missing-file.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  dbus-glib-devel
 BuildRequires:  gobject-introspection-devel >= 0.6.11
 BuildRequires:  libxslt-proc
 BuildRequires:  python-devel
+BuildRequires:	vala-devel
+BuildRequires:	vala-tools
 
 %description
 %name is a glib utility library for the telepathy framework.
@@ -56,21 +59,23 @@ Provides: lib%name-devel = %version-%release
 %{_includedir}/telepathy-1.0/telepathy-glib/_gen/*.h
 %{_datadir}/gtk-doc/html/telepathy-glib/
 %_libdir/pkgconfig/telepathy-glib.pc
+%_libdir/pkgconfig/telepathy-vala.pc
+%_datadir/vala/vapi/telepathy-glib.deps
+%_datadir/vala/vapi/telepathy-glib.vapi
 
 #--------------------------------------------------------------------
 
 %prep
 %setup -q
-#%patch -p1 -b .pkgconfig
+%patch0 -p0
 
 %build
-%configure2_5x
+%configure2_5x --enable-vala-bindings --disable-static
 %make
 
 %install
 rm -rf %buildroot
 %makeinstall_std
-rm -f %buildroot%{_libdir}/libtelepathy-glib.a
 
 %clean
 rm -rf %buildroot
