@@ -3,8 +3,8 @@
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
 Name:           telepathy-glib
-Version:        0.11.11
-Release:        %mkrel 2
+Version:        0.11.13
+Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
 Group:          Networking/Instant messaging
@@ -59,7 +59,6 @@ Provides: lib%name-devel = %version-%release
 %{_includedir}/telepathy-1.0/telepathy-glib/_gen/*.h
 %{_datadir}/gtk-doc/html/telepathy-glib/
 %_libdir/pkgconfig/telepathy-glib.pc
-%_libdir/pkgconfig/telepathy-vala.pc
 %_datadir/vala/vapi/telepathy-glib.deps
 %_datadir/vala/vapi/telepathy-glib.vapi
 
