@@ -3,7 +3,7 @@
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
 Name:           telepathy-glib
-Version:        0.12.7
+Version:        0.14.3
 Release:        %mkrel 1
 Summary:        A glib utility library for the telepathy framework
 
@@ -18,7 +18,7 @@ BuildRequires:  dbus-glib-devel
 BuildRequires:  gobject-introspection-devel >= 0.6.11
 BuildRequires:  libxslt-proc
 BuildRequires:  python-devel
-BuildRequires:	vala-devel
+BuildRequires:	vala-devel >= 0.12
 BuildRequires:	vala-tools
 
 %description
