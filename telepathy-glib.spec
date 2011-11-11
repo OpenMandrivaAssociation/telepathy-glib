@@ -14,6 +14,7 @@ URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		telepathy-glib-0.11.11-missing-file.patch
 BuildRequires:  dbus-glib-devel
+BuildRequires:  gtk-doc
 BuildRequires:  gobject-introspection-devel >= 0.6.11
 BuildRequires:  libxslt-proc
 BuildRequires:  python-devel
