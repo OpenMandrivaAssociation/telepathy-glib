@@ -4,15 +4,14 @@
 %define develname %mklibname -d %{name}
 
 Name:           telepathy-glib
-Version:        0.17.0
+Version:        0.17.3
 Release:        1
 Summary:        A glib utility library for the telepathy framework
-
 Group:          Networking/Instant messaging
 License:        LGPLv2+
 URL:            http://telepathy.freedesktop.org/wiki/
 Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:		telepathy-glib-0.11.11-missing-file.patch
+Patch0:			telepathy-glib-0.11.11-missing-file.patch
 BuildRequires:  dbus-glib-devel
 BuildRequires:  gtk-doc
 BuildRequires:  gobject-introspection-devel >= 0.6.11
@@ -29,8 +28,7 @@ BuildRequires:	vala-tools
 Group: System/Libraries
 Summary: A glib utility library for the telepathy framework
 Requires:       telepathy-filesystem
-Obsoletes:      %{name} < %{version}-%{release}
-Provides:       %{name} = %{version}-%{release}
+%rename %{name}
 
 %description -n %{libname}
 %name is a glib utility library for the telepathy framework.
@@ -40,7 +38,6 @@ Provides:       %{name} = %{version}-%{release}
 Group: Development/C
 Summary: A glib utility library for the telepathy framework
 Requires: %{libname} = %{version}-%{release}
-Provides: lib%{name}-devel = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
@@ -52,7 +49,6 @@ Provides: %{name}-devel = %{version}-%{release}
 %{_libdir}/girepository-1.0/TelepathyGLib-%{api}.typelib
 
 %files -n %{develname}
-%{_libdir}/libtelepathy-glib.la
 %{_libdir}/libtelepathy-glib.so
 %{_datadir}/gir-1.0/TelepathyGLib-%{api}.gir
 %dir %{_includedir}/telepathy-1.0/
@@ -70,17 +66,14 @@ Provides: %{name}-devel = %{version}-%{release}
 %patch0 -p0
 
 %build
-%configure2_5x --enable-vala-bindings --disable-static
-%{make}
+%configure2_5x \
+	--enable-vala-bindings \
+	--disable-static
+
+%make
 
 %install
 rm -rf %{buildroot}
-%{makeinstall_std}
+%makeinstall_std
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
