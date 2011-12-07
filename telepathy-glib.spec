@@ -53,6 +53,7 @@ Provides: %{name}-devel = %{version}-%{release}
 %{_datadir}/gir-1.0/TelepathyGLib-%{api}.gir
 %dir %{_includedir}/telepathy-1.0/
 %dir %{_includedir}/telepathy-1.0/telepathy-glib/
+%dir %{_includedir}/telepathy-1.0/telepathy-glib/_gen
 %{_includedir}/telepathy-1.0/telepathy-glib/*.h
 %{_includedir}/telepathy-1.0/telepathy-glib/_gen/*.h
 %{_datadir}/gtk-doc/html/telepathy-glib/
@@ -76,4 +77,5 @@ Provides: %{name}-devel = %{version}-%{release}
 rm -rf %{buildroot}
 %makeinstall_std
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
+
 
