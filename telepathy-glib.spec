@@ -4,7 +4,7 @@
 %define develname %mklibname -d %{name}
 
 Name:           telepathy-glib
-Version:        0.17.3
+Version:        0.18.1
 Release:        1
 Summary:        A glib utility library for the telepathy framework
 Group:          Networking/Instant messaging
