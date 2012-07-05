@@ -1,54 +1,66 @@
 %define major 0
 %define api 0.12
 %define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %{name}
+%define devname %mklibname -d %{name}
 
-Name:           telepathy-glib
-Version:        0.18.1
-Release:        1
-Summary:        A glib utility library for the telepathy framework
-Group:          Networking/Instant messaging
-License:        LGPLv2+
-URL:            http://telepathy.freedesktop.org/wiki/
-Source0:        http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:			telepathy-glib-0.11.11-missing-file.patch
-BuildRequires:  dbus-glib-devel
-BuildRequires:  gtk-doc
-BuildRequires:  gobject-introspection-devel >= 0.6.11
-BuildRequires:  libxslt-proc
-BuildRequires:  python-devel
+Summary:	A glib utility library for the telepathy framework
+Name:		telepathy-glib
+Version:	0.19.3
+Release:	1
+Group:		Networking/Instant messaging
+License:	LGPLv2+
+URL:		http://telepathy.freedesktop.org/wiki/
+Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+Patch0:		telepathy-glib-0.11.11-missing-file.patch
+
+BuildRequires:	gtk-doc
+BuildRequires:	xsltproc
+BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	vala-devel >= 0.12
 BuildRequires:	vala-tools
 
 %description
 %{name} is a glib utility library for the telepathy framework.
 
-#--------------------------------------------------------------------
 %package -n %{libname}
-Group: System/Libraries
-Summary: A glib utility library for the telepathy framework
-Requires:       telepathy-filesystem
-%rename %{name}
+Summary:	A glib utility library for the telepathy framework
+Group:		System/Libraries
+Requires:	telepathy-filesystem
+%rename		%{name}
 
 %description -n %{libname}
 %name is a glib utility library for the telepathy framework.
 
-#--------------------------------------------------------------------
-%package -n %{develname}
-Group: Development/C
-Summary: A glib utility library for the telepathy framework
-Requires: %{libname} = %{version}-%{release}
-Provides: %{name}-devel = %{version}-%{release}
+%package -n %{devname}
+Summary:	A glib utility library for the telepathy framework
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description -n %{devname}
 %{name} is a glib utility library for the telepathy framework.
 
-#--------------------------------------------------------------------
+%setup -q
+%patch0 -p0
+
+%build
+%configure2_5x \
+	--enable-vala-bindings \
+	--disable-static
+
+%make
+
+%install
+%makeinstall_std
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
+
 %files -n %{libname}
 %{_libdir}/libtelepathy-glib.so.%{major}*
 %{_libdir}/girepository-1.0/TelepathyGLib-%{api}.typelib
 
-%files -n %{develname}
+%files -n %{devname}
 %{_libdir}/libtelepathy-glib.so
 %{_datadir}/gir-1.0/TelepathyGLib-%{api}.gir
 %dir %{_includedir}/telepathy-1.0/
@@ -61,21 +73,5 @@ Provides: %{name}-devel = %{version}-%{release}
 %{_datadir}/vala/vapi/telepathy-glib.deps
 %{_datadir}/vala/vapi/telepathy-glib.vapi
 
-#--------------------------------------------------------------------
 %prep
-%setup -q
-%patch0 -p0
-
-%build
-%configure2_5x \
-	--enable-vala-bindings \
-	--disable-static
-
-%make
-
-%install
-rm -rf %{buildroot}
-%makeinstall_std
-find %{buildroot} -name '*.la' -exec rm -f {} ';'
-
 
