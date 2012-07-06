@@ -42,6 +42,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 %description -n %{devname}
 %{name} is a glib utility library for the telepathy framework.
 
+%prep
 %setup -q
 %patch0 -p0
 
@@ -72,6 +73,4 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/telepathy-glib.pc
 %{_datadir}/vala/vapi/telepathy-glib.deps
 %{_datadir}/vala/vapi/telepathy-glib.vapi
-
-%prep
 
