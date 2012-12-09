@@ -5,7 +5,7 @@
 
 Summary:	A glib utility library for the telepathy framework
 Name:		telepathy-glib
-Version:	0.19.3
+Version:	0.20.1
 Release:	1
 Group:		Networking/Instant messaging
 License:	LGPLv2+
@@ -73,4 +73,3 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/telepathy-glib.pc
 %{_datadir}/vala/vapi/telepathy-glib.deps
 %{_datadir}/vala/vapi/telepathy-glib.vapi
-
