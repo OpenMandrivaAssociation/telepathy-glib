@@ -6,7 +6,7 @@
 Summary:	A glib utility library for the telepathy framework
 Name:		telepathy-glib
 Version:	0.20.1
-Release:	5
+Release:	6
 Group:		Networking/Instant messaging
 License:	LGPLv2+
 URL:		http://telepathy.freedesktop.org/wiki/
