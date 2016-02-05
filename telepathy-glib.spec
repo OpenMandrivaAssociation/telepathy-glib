@@ -17,7 +17,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	xsltproc
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	vala-devel >= 0.12
 BuildRequires:	vala-tools
 
@@ -47,11 +47,11 @@ Provides:	%{name}-devel = %{version}-%{release}
 %patch0 -p0
 
 %build
-%configure2_5x \
+%configure \
 	--enable-vala-bindings \
 	--disable-static
 
-%make PYTHON=python2
+%make PYTHON=%{__python2}
 
 %install
 %makeinstall_std
