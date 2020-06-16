@@ -6,7 +6,7 @@
 Summary:	A glib utility library for the telepathy framework
 Name:		telepathy-glib
 Version:	0.24.1
-Release:	5
+Release:	6
 Group:		Networking/Instant messaging
 License:	LGPLv2+
 URL:		http://telepathy.freedesktop.org/wiki/
@@ -51,10 +51,10 @@ Provides:	%{name}-devel = %{version}-%{release}
 	--enable-vala-bindings \
 	--disable-static
 
-%make PYTHON=%{__python2}
+%make_build PYTHON=%{__python2}
 
 %install
-%makeinstall_std
+%make_install
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 %files -n %{libname}
