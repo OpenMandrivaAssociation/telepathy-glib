@@ -17,7 +17,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	xsltproc
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	vala-devel >= 0.12
 BuildRequires:	vala-tools
 
@@ -43,19 +43,16 @@ Provides:	%{name}-devel = %{version}-%{release}
 %{name} is a glib utility library for the telepathy framework.
 
 %prep
-%setup -q
-%patch0 -p0
-
-%build
+%autosetup -p0
 %configure \
 	--enable-vala-bindings \
 	--disable-static
 
-%make_build PYTHON=%{__python2}
+%build
+%make_build PYTHON=%{__python}
 
 %install
 %make_install
-find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 %files -n %{libname}
 %{_libdir}/libtelepathy-glib.so.%{major}*
