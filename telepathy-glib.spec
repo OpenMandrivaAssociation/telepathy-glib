@@ -9,7 +9,7 @@ Version:	0.24.2
 Release:	3
 Group:		Networking/Instant messaging
 License:	LGPLv2+
-URL:		http://telepathy.freedesktop.org/wiki/
+URL:		https://telepathy.freedesktop.org/wiki/
 Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		telepathy-glib-0.11.11-missing-file.patch
 
